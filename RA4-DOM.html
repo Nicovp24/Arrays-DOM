@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ejemplos de Métodos de Arrays</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<style>
+body {
+  background-color: #f8f9fa;
+}
+.method-section {
+  margin: 20px 0;
+}
+.method-header {
+  background-color: #0d6efd;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+pre {
+  background-color: #f1f1f1;
+  padding: 10px;
+  border-radius: 5px;
+}
+button {
+  margin-top: 10px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1 class="text-center my-4">Ejemplos de Métodos de Arrays</h1>
+  <div id="examples"></div>
+</div>
+<script>
+const examples = [
+  {
+    method: "1. at()",
+    description: "Accede al elemento en una posición dada, permite índices negativos.",
+    example: `let array = [10, 20, 30, 40, 50];\nconsole.log(array.at(1)); // 20\nconsole.log(array.at(-1)); // 50`,
+    execute: () => {
+      let array = [10, 20, 30, 40, 50];
+      return [array.at(1), array.at(-1)];
+    }
+  },
+  {
+    method: "2. concat()",
+    description: "Combina arrays y devuelve un nuevo array.",
+    example: `let array = [10, 20, 30, 40, 50];\nlet extra = [60, 70];\nlet combinado = array.concat(extra);\nconsole.log(combinado);`,
+    execute: () => {
+      let array = [10, 20, 30, 40, 50];
+      let extra = [60, 70];
+      return array.concat(extra);
+    }
+  },
+  {
+    method: "3. copyWithin()",
+    description: "Copia una parte del array dentro de sí mismo.",
+    example: `let array = [10, 20, 30, 40, 50];\narray.copyWithin(0, 3);\nconsole.log(array);`,
+    execute: () => {
+      let array = [10, 20, 30, 40, 50];
+      array.copyWithin(0, 3);
+      return array;
+    }
+  },
+  {
+    method: "4. entries()",
+    description: "Crea un iterador de pares [índice, valor].",
+    example: `let array = [10, 20, 30, 40, 50];\nfor (const [index, value] of array.entries()) {\n  console.log(index, value);\n}`,
+    execute: () => {
+      let array = [10, 20, 30, 40, 50];
+      let result = [];
+      for (const [index, value] of array.entries()) {
+        result.push([index, value]);
+      }
+      return result;
+    }
+  },
+  {
+    method: "5. every()",
+    description: "Verifica si todos los elementos cumplen una condición.",
+    example: `let array = [10, 20, 30, 40, 50];\nconsole.log(array.every(n => n > 20));`,
+    execute: () => {
+      let array = [10, 20, 30, 40, 50];
+      return array.every(n => n > 20);
+    }
+  },
+  {
+    method: "6. fill()",
+    description: "Rellena el array con un valor desde un índice inicial a uno final.",
+    example: `let array = [10, 20, 30, 40, 50];\narray.fill(0, 1, 3);\nconsole.log(array);`,
+    execute: () => {
+      let array = [10, 20, 30, 40, 50];
+      array.fill(0, 1, 3);
+      return array;
+    }
+  },
+  {
+    method: "7. filter()",
+    description: "Crea un nuevo array con elementos que cumplan una condición.",
+    example: `let array = [10, 20, 30, 40, 50];\nlet filtrado = array.filter(n => n > 30);\nconsole.log(filtrado);`,
+    execute: () => {
+      let array = [10, 20, 30, 40, 50];
+      return array.filter(n => n > 30);
+    }
+  },
+  {
+    method: "8. find()",
+    description: "Devuelve el primer elemento que cumpla con una condición.",
+    example: `let array = [10, 20, 30, 40, 50];\nconsole.log(array.find(n => n > 30));`,
+    execute: () => {
+      let array = [10, 20, 30, 40, 50];
+      return array.find(n => n > 30);
+    }
+  },
+  {
+    method: "9. findIndex()",
+    description: "Devuelve el índice del primer elemento que cumpla una condición.",
+    example: `let array = [10, 20, 30, 40, 50];\nconsole.log(array.findIndex(n => n > 30));`,
+    execute: () => {
+      let array = [10, 20, 30, 40, 50];
+      return array.findIndex(n => n > 30);
+    }
+  },
+  {
+    method: "10. findLast()",
+    description: "Devuelve el último elemento que cumpla una condición.",
+    example: `let array = [10, 20, 30, 40, 50];\nconsole.log(array.findLast(n => n > 30));`,
+    execute: () => {
+      let array = [10, 20, 30, 40, 50];
+      return array.findLast(n => n > 30);
+    }
+  },
+  {
+    method: "11. findLastIndex()",
+    description: "Índice del último elemento que cumpla una condición.",
+    example: `let array = [10, 20, 30, 40, 50];\nconsole.log(array.findLastIndex(n => n > 30)); // 4`,
+    execute: () => {
+      let array = [10, 20, 30, 40, 50];
+      return array.findLastIndex(n => n > 30);
+    }
+  },
+  {
+    method: "12. flat()",
+    description: "Aplana un array multidimensional.",
+    example: `let nested = [1, [2, [3, 4]]];\nconsole.log(nested.flat(2));`,
+    execute: () => {
+      let nested = [1, [2, [3, 4]]];
+      return nested.flat(2);
+    }
+  },
+  {
+    method: "13. flatMap()",
+    description: "Aplica una función y aplana el resultado.",
+    example: `let duplicados = [1, 2, 3];\nconsole.log(duplicados.flatMap(n => [n, n * 2]));`,
+    execute: () => {
+      let duplicados = [1, 2, 3];
+      return duplicados.flatMap(n => [n, n * 2]);
+    }
+  },
+  {
+    method: "14. forEach()",
+    description: "Ejecuta una función por cada elemento.",
+    example: `let array = [40, 0, 0, 40, 50];\narray.forEach(n => console.log(n));`,
+    execute: () => {
+      let array = [40, 0, 0, 40, 50];
+      let result = [];
+      array.forEach(n => result.push(n));
+      return result;
+    }
+  },
+  {
+    method: "15. includes()",
+    description: "Comprueba si el array contiene un valor.",
+    example: `let array = [40, 0, 0, 40, 50];\nconsole.log(array.includes(40));`,
+    execute: () => {
+      let array = [40, 0, 0, 40, 50];
+      return array.includes(40);
+    }
+  },
+  {
+    method: "16. indexOf()",
+    description: "Encuentra el índice de un elemento.",
+    example: `let array = [40, 0, 0, 40, 50];\nconsole.log(array.indexOf(40));`,
+    execute: () => {
+      let array = [40, 0, 0, 40, 50];
+      return array.indexOf(40);
+    }
+  },
+  {
+    method: "17. join()",
+    description: "Combina los elementos del array en un string.",
+    example: `let array = [40, 0, 0, 40, 50];\nconsole.log(array.join('-'));`,
+    execute: () => {
+      let array = [40, 0, 0, 40, 50];
+      return array.join('-');
+    }
+  },
+  {
+    method: "18. keys()",
+    description: "Iterador de índices.",
+    example: `let array = [40, 0, 0, 40, 50];\nfor (const key of array.keys()) {\n  console.log(key);\n}`,
+    execute: () => {
+      let array = [40, 0, 0, 40, 50];
+      let result = [];
+      for (const key of array.keys()) {
+        result.push(key);
+      }
+      return result;
+    }
+  },
+  {
+    method: "19. lastIndexOf()",
+    description: "Encuentra el último índice de un elemento.",
+    example: `let array = [40, 0, 0, 40, 50];\nconsole.log(array.lastIndexOf(40));`,
+    execute: () => {
+      let array = [40, 0, 0, 40, 50];
+      return array.lastIndexOf(40);
+    }
+  },
+  {
+    method: "20. map()",
+    description: "Crea un nuevo array transformando los elementos.",
+    example: `let array = [40, 0, 0, 40, 50];\nlet mapeado = array.map(n => n * 2);\nconsole.log(mapeado);`,
+    execute: () => {
+      let array = [40, 0, 0, 40, 50];
+      return array.map(n => n * 2);
+    }
+  },
+  {
+    method: "21. pop()",
+    description: "Elimina el último elemento del array.",
+    example: `let array = [40, 0, 0, 40, 50];\nconsole.log(array.pop());\nconsole.log(array);`,
+    execute: () => {
+      let array = [40, 0, 0, 40, 50];
+      const popped = array.pop();
+      return { popped, array };
+    }
+  },
+  {
+    method: "22. push()",
+    description: "Agrega elementos al final del array.",
+    example: `let array = [40, 0, 0, 40];\narray.push(60);\nconsole.log(array);`,
+    execute: () => {
+      let array = [40, 0, 0, 40];
+      array.push(60);
+      return array;
+    }
+  },
+  {
+    method: "23. reduce()",
+    description: "Reduce el array a un valor acumulado.",
+    example: `let array = [10, 20, 30];\nconsole.log(array.reduce((acc, n) => acc + n, 0));`,
+    execute: () => {
+      let array = [10, 20, 30];
+      return array.reduce((acc, n) => acc + n, 0);
+    }
+  },
+  {
+    method: "24. reduceRight()",
+    description: "Igual que reduce, pero desde el final.",
+    example: `let array = [10, 20, 30];\nconsole.log(array.reduceRight((acc, n) => acc - n, 0));`,
+    execute: () => {
+      let array = [10, 20, 30];
+      return array.reduceRight((acc, n) => acc - n, 0);
+    }
+  },
+  {
+    method: "25. reverse()",
+    description: "Invierte el orden del array.",
+    example: `let array = [10, 20, 30];\nconsole.log(array.reverse());`,
+    execute: () => {
+      let array = [10, 20, 30];
+      return array.reverse();
+    }
+  },
+  {
+    method: "26. shift()",
+    description: "Elimina el primer elemento del array.",
+    example: `let array = [10, 20, 30];\nconsole.log(array.shift());\nconsole.log(array);`,
+    execute: () => {
+      let array = [10, 20, 30];
+      const shifted = array.shift();
+      return { shifted, array };
+    }
+  },
+  {
+    method: "27. slice()",
+    description: "Crea una copia parcial del array.",
+    example: `let array = [10, 20, 30, 40];\nconsole.log(array.slice(1, 3));`,
+    execute: () => {
+      let array = [10, 20, 30, 40];
+      return array.slice(1, 3);
+    }
+  },
+  {
+    method: "28. some()",
+    description: "Verifica si algún elemento cumple una condición.",
+    example: `let array = [10, 20, 30];\nconsole.log(array.some(n => n > 25));`,
+    execute: () => {
+      let array = [10, 20, 30];
+      return array.some(n => n > 25);
+    }
+  },
+  {
+    method: "29. sort()",
+    description: "Ordena los elementos del array.",
+    example: `let array = [30, 10, 20];\narray.sort((a, b) => a - b);\nconsole.log(array);`,
+    execute: () => {
+      let array = [30, 10, 20];
+      return array.sort((a, b) => a - b);
+    }
+  },
+  {
+    method: "30. splice()",
+    description: "Agrega, elimina o reemplaza elementos.",
+    example: `let array = [10, 20, 30];\narray.splice(1, 1, 40, 50);\nconsole.log(array);`,
+    execute: () => {
+      let array = [10, 20, 30];
+      array.splice(1, 1, 40, 50);
+      return array;
+    }
+  },
+  {
+    method: "31. [@@iterator]()",
+    description: "Iterador de valores (implícito en bucles for...of).",
+    example: `let array = [10, 20, 30];\nfor (const value of array) {\n  console.log(value);\n}`,
+    execute: () => {
+      let array = [10, 20, 30];
+      let result = [];
+      for (const value of array) {
+        result.push(value);
+      }
+      return result;
+    }
+  },
+  {
+    method: "32. toLocaleString()",
+    description: "Convierte los elementos a una cadena con formato regional.",
+    example: `let array = [10, 20, 30];\nconsole.log(array.toLocaleString());`,
+    execute: () => {
+      let array = [10, 20, 30];
+      return array.toLocaleString();
+    }
+  },
+  {
+    method: "33. toReversed()",
+    description: "Devuelve una copia del array invertida (sin modificar el original).",
+    example: `let array = [10, 20, 30];\nconsole.log(array.toReversed());\nconsole.log(array);`,
+    execute: () => {
+      let array = [10, 20, 30];
+      return { reversed: array.slice().reverse(), original: array };
+    }
+  },
+  {
+    method: "34. toSorted()",
+    description: "Devuelve una copia ordenada.",
+    example: `let array = [30, 10, 20];\nconsole.log(array.toSorted((a, b) => a - b));`,
+    execute: () => {
+      let array = [30, 10, 20];
+      return { sorted: array.slice().sort((a, b) => a - b), original: array };
+    }
+  },
+  {
+    method: "35. toSpliced()",
+    description: "Devuelve una copia con elementos eliminados y reemplazados.",
+    example: `let array = [10, 20, 30];\nconsole.log(array.toSpliced(1, 1, 40));\nconsole.log(array);`,
+    execute: () => {
+      let array = [10, 20, 30];
+      let spliced = array.slice();
+      spliced.splice(1, 1, 40);
+      return { spliced, original: array };
+    }
+  },
+  {
+    method: "36. toString()",
+    description: "Convierte el array en una cadena.",
+    example: `let array = [10, 20, 30];\nconsole.log(array.toString());`,
+    execute: () => {
+      let array = [10, 20, 30];
+      return array.toString();
+    }
+  },
+  {
+    method: "37. unshift()",
+    description: "Agrega elementos al inicio del array.",
+    example: `let array = [20, 30];\narray.unshift(10);\nconsole.log(array);`,
+    execute: () => {
+      let array = [20, 30];
+      array.unshift(10);
+      return array;
+    }
+  },
+  {
+    method: "38. values()",
+    description: "Iterador de valores.",
+    example: `let array = [10, 20, 30];\nfor (const value of array.values()) {\n  console.log(value);\n}`,
+    execute: () => {
+      let array = [10, 20, 30];
+      let result = [];
+      for (const value of array.values()) {
+        result.push(value);
+      }
+      return result;
+    }
+  },
+  {
+    method: "39. with()",
+    description: "Devuelve una copia modificada en un índice especificado.",
+    example: `let array = [10, 20, 30];\nconsole.log(array.with(1, 50));\nconsole.log(array);`,
+    execute: () => {
+      let array = [10, 20, 30];
+      let modified = array.slice();
+      modified[1] = 50;
+      return { modified, original: array };
+    }
+  }
+];
+
+// Renderizando dinámicamente los métodos
+const container = document.getElementById("examples");
+examples.forEach(({ method, description, example, execute }, index) => {
+  const section = document.createElement("div");
+  section.className = "method-section";
+  section.innerHTML = `
+    <div class="method-header">
+      <h2>${method}</h2>
+    </div>
+    <p><strong>Descripción:</strong> ${description}</p>
+    <pre><code>${example}</code></pre>
+    <button class="btn btn-primary" onclick="showResult(${index})">Ejecutar Ejemplo</button>
+    <div id="result-${index}" class="mt-3 alert alert-secondary" style="display: none;"></div>
+  `;
+  container.appendChild(section);
+});
+
+function showResult(index) {
+  const resultDiv = document.getElementById(`result-${index}`);
+  const result = examples[index].execute();
+  resultDiv.style.display = "block";
+  resultDiv.textContent = `Resultado: ${JSON.stringify(result, null, 2)}`;
+}
+</script>
+</body>
+</html>
